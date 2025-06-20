@@ -1,0 +1,198 @@
+/* General container for the testimonials section */
+.testimonials-section {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8; /* Light background similar to the image */
+}
+
+.testimonials-title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.testimonials-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Carousel container */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Space between arrows and testimonials */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navigation arrows */
+.carousel-arrow {
+  background-color: #007bff; /* Blue background for arrows */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Wrapper for testimonial cards */
+.testimonials-wrapper {
+  display: flex;
+  gap: 20px; /* Space between testimonial cards */
+  overflow: hidden; /* Hide overflowing cards */
+  flex: 1; /* Allow wrapper to take available space */
+  justify-content: center; /* Center cards if less than 3 */
+}
+
+/* Individual testimonial card */
+.testimonial-card {
+  /* background-color: white; */
+  /* border-radius: 10px; */
+  padding: 30px;
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 0 0 calc(33.333% - 13.333px); /* For 3 cards with 20px gap */
+  max-width: calc(33.333% - 13.333px);
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  transition: transform 0.3s ease;
+}
+
+
+
+.testimonial-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #007bff; /* Blue border around image */
+}
+
+.testimonial-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.testimonial-date {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.testimonial-text {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Dots for navigation */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc; /* Inactive dot color */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+  background-color: #007bff; /* Active dot color */
+  transform: scale(1.2); /* Slightly larger for active dot */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .testimonial-card {
+    flex: 0 0 calc(50% - 10px); /* Show 2 cards on smaller desktops */
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-subtitle {
+    font-size: 16px;
+  }
+
+  .testimonial-card {
+    flex: 0 0 90%; /* Show 1 card on tablets */
+    max-width: 90%;
+  }
+
+  .carousel-container {
+    flex-direction: column; /* Stack arrows and testimonials vertically */
+    gap: 20px;
+  }
+
+  .left-arrow, .right-arrow {
+    margin: 0 auto; /* Center arrows when stacked */
+  }
+
+  .testimonials-wrapper {
+    width: 100%; /* Full width for wrapper */
+    overflow-x: auto; /* Enable horizontal scrolling for cards if needed */
+    justify-content: flex-start; /* Align cards to start for overflow */
+    padding-bottom: 10px; /* Space for scrollbar */
+    scroll-snap-type: x mandatory; /* Smooth snapping for cards */
+  }
+
+  .testimonial-card {
+    scroll-snap-align: center; /* Snap cards to center */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-title {
+    font-size: 28px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .testimonial-card {
+    padding: 20px;
+  }
+
+  .testimonial-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .testimonial-name {
+    font-size: 18px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+  }
+}

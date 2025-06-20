@@ -1,0 +1,149 @@
+.header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 70px;
+  box-sizing: border-box;
+}
+
+.logo-image {
+  height: 44px;
+  width: auto;
+  max-width: 100px;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 38px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #3A3A3A;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}
+
+.request-call-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #2495FD;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.request-call-button:hover {
+  background-color: #207dd3;
+  text-decoration: none;
+}
+
+.call-icon {
+  font-size: 14px;
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 40px;
+    height: 80px;
+  }
+
+  .nav-menu ul {
+    gap: 25px;
+  }
+
+  .nav-menu a {
+    font-size: 16px;
+  }
+
+  .request-call-button {
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile Styles (up to 767px) */
+@media (max-width: 767px) {
+  .header {
+    padding: 0 20px;
+    height: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  .logo-image {
+    height: 36px;
+  }
+
+  .nav-menu {
+    width: 100%;
+    order: 3;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+  }
+
+  .nav-menu ul {
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .nav-menu a {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .request-call-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Hide some menu items if needed */
+  /* .nav-menu ul li:nth-child(2),
+  .nav-menu ul li:nth-child(3) {
+    display: none;
+  } */
+}
+
+/* Small Mobile Styles (up to 480px) */
+@media (max-width: 480px) {
+  .header {
+    height: 60px;
+    padding-top: 5px;
+  }
+
+  .nav-menu ul {
+    gap: 10px;
+  }
+
+  .request-call-button span {
+    display: none;
+  }
+
+  .request-call-button {
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .call-icon {
+    font-size: 16px;
+    margin: 0;
+  }
+}
