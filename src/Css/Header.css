@@ -8,10 +8,22 @@
   box-sizing: border-box;
 }
 
+.logo {
+    /* Set a specific width for the logo container to give it space */
+    width: 200px; /* Adjust as desired. This will control the maximum space the logo takes. */
+    display: flex; /* Helps in centering the image if needed */
+    align-items: center;
+}
+
 .logo-image {
-  height: 44px;
-  width: auto;
-  max-width: 100px;
+    /* Make the image fill its container */
+    max-width: 100%; /* Ensures it doesn't overflow the .logo div */
+    height: auto;    /* Maintain aspect ratio */
+    display: block;  /* Remove extra space below the image */
+    /* Adjust these values to make the logo "big" */
+    /* You can use a fixed height if your logo is always short/wide, or max-height for vertical control */
+    height: 60px; /* Or max-height. Start with a value like 60px-80px and adjust */
+    object-fit: contain; /* Ensures the entire image is visible, scales down if needed */
 }
 
 .nav-menu ul {

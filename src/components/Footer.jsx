@@ -7,11 +7,13 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-logo-section">
-          <div className="logo-icon">🔵</div>
+          {/* Replace with your actual logo component or image */}
+          <div className="logo-icon">   </div>
           <div>
-            <h3>Logo</h3>
+            {/* Replace with your actual brand name */}
+            <h3>The Property Place</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+              Your trusted partner in navigating the dynamic real estate landscape. We are dedicated to connecting you with your dream property, offering unparalleled service and expert guidance every step of the way.
             </p>
           </div>
         </div>
@@ -20,35 +22,35 @@ const Footer = () => {
           <div className="footer-column">
             <h4>Explore</h4>
             <ul>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li>Properties for Sale</li>
+              <li>Properties for Rent</li>
+              <li>New Developments</li>
+              <li>Featured Listings</li>
             </ul>
           </div>
           <div className="footer-column">
             <h4>Services</h4>
             <ul>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li>Buy a Property</li>
+              <li>Sell Your Home</li>
+              <li>Rent a Home</li>
+              <li>Property Valuation</li>
             </ul>
           </div>
           <div className="footer-column">
             <h4>Contact</h4>
             <ul>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
+              <li>Contact Us</li>
+              <li>Schedule a Viewing</li>
+              <li>Get a Free Appraisal</li>
+              <li>FAQ</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© Lorem Ipsum - All rights reserved</p>
+        <p>© 2025 The Property Place - All rights reserved</p>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios'; // Make sure axios is imported for data fetching
+import axios from 'axios';
 import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaBed, FaShower, FaRulerCombined, FaMapMarkerAlt } from 'react-icons/fa';
@@ -9,7 +9,7 @@ import '../Css/HeroSectionWithSearch.css'; // Ensure this path is correct
 const API_BASE_URL = 'http://localhost:8000/api/properties';
 const UPLOADS_BASE_URL = 'http://localhost:8000/uploads/'; // Base URL for static uploaded images
 
-// Helper to capitalize the first letter of a string (useful for dropdown options)
+// Helper to capitalize the first letter of a string
 const capitalizeFirstLetter = (string) => {
     if (!string) return '';
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,8 +19,8 @@ const capitalizeFirstLetter = (string) => {
 const HeroSectionWithSearch = ({ onFilterChange, currentFilters }) => {
     const [filterOptions, setFilterOptions] = useState({
         cities: [],
-        types: [], // This will now hold 'For Rent', 'For Sale'
-        propertySubTypes: [], // For 'Apartment', 'House', 'Villa' etc. (from description first word)
+        types: [],
+        propertySubTypes: [],
         bedrooms: []
     });
 
@@ -28,35 +28,29 @@ const HeroSectionWithSearch = ({ onFilterChange, currentFilters }) => {
         const fetchDynamicFilterOptions = async () => {
             try {
                 // Fetch all properties to derive filter options
-                // In a production app, you might have specific backend endpoints
-                // like /api/filterOptions to get these more efficiently.
                 const response = await axios.get(`${API_BASE_URL}`);
                 const properties = response.data.properties || [];
 
-                // Extract unique cities (assuming 'city' field in your property data)
                 const cities = [...new Set(properties.map(p => p.city).filter(Boolean))].sort();
-
-                // Extract unique property types (assuming 'type' field like 'For Rent', 'For Sale')
                 const types = [...new Set(properties.map(p => p.type).filter(Boolean))].sort();
-
-                // Extract unique property sub-types (e.g., from the first word of 'description')
+                
+                // Extract unique property sub-types from the first word of 'description'
                 const propertySubTypes = [...new Set(properties
                     .map(p => p.description ? capitalizeFirstLetter(p.description.split(' ')[0]) : '')
                     .filter(type => type)
                 )].sort();
 
-                // Extract unique bedroom counts (assuming 'bedroom' field in your property data)
                 const bedrooms = [...new Set(properties.map(p => p.bedroom).filter(val => val !== null && val !== undefined))].sort((a, b) => a - b);
 
                 setFilterOptions({
                     cities: ['All Cities', ...cities],
-                    types: ['All Units', ...types], // 'All Units' for the tab filter
-                    propertySubTypes: ['Any Type', ...propertySubTypes], // 'Any Type' for the dropdown
+                    types: ['All Units', ...types],
+                    propertySubTypes: ['Any Type', ...propertySubTypes],
                     bedrooms: ['Any Size', ...bedrooms]
                 });
             } catch (error) {
                 console.error('Error fetching dynamic filter options:', error);
-                // Fallback to default or empty options if fetch fails
+                // Optionally, handle error state for filter options, e.g., show a message
             }
         };
 
@@ -91,23 +85,20 @@ const HeroSectionWithSearch = ({ onFilterChange, currentFilters }) => {
             <div className="search-section">
                 <div className="property-options">
                     <button
-                        className={`property-option ${currentFilters.propertyType === '' ? 'active' : ''}`} // Active when propertyType is empty (ALL_UNITS)
+                        className={`property-option ${currentFilters.propertyType === '' ? 'active' : ''}`}
                         onClick={() => handlePropertyOptionClick('')} // Empty string means 'ALL UNITS' to backend
                     >
                         ALL UNITS
                     </button>
-                    <button
-                        className={`property-option ${currentFilters.propertyType === 'For Rent' ? 'active' : ''}`}
-                        onClick={() => handlePropertyOptionClick('For Rent')}
-                    >
-                        FOR RENT
-                    </button>
-                    <button
-                        className={`property-option ${currentFilters.propertyType === 'For Sale' ? 'active' : ''}`}
-                        onClick={() => handlePropertyOptionClick('For Sale')}
-                    >
-                        FOR SALE
-                    </button>
+                    {filterOptions.types.filter(type => type !== 'All Units').map((type, index) => (
+                        <button
+                            key={index} // Use index as key, or a more unique identifier if available
+                            className={`property-option ${currentFilters.propertyType === type ? 'active' : ''}`}
+                            onClick={() => handlePropertyOptionClick(type)}
+                        >
+                            {type.toUpperCase()}
+                        </button>
+                    ))}
                 </div>
 
                 <div className="search-filters">
@@ -180,21 +171,32 @@ const FeaturedListings = ({ filters, setFilters }) => {
 
         // --- Append filters based on backend's EXPECTED PARAM NAMES ---
         // Ensure that empty strings are NOT sent as query parameters
-        if (filters.propertyType && filters.propertyType !== 'ALL_UNITS') {
+        if (filters.propertyType) { // No need for 'ALL_UNITS' check, backend handles empty string as "all"
             url.searchParams.append('type', filters.propertyType); // e.g., 'For Rent', 'For Sale'
         }
         if (filters.propertySubType) {
-            url.searchParams.append('description', filters.propertySubType); // Assuming backend filters by description's first word
+            // Your backend controller uses 'description' for propertySubType search.
+            // This assumes the first word of the description IS the subType.
+            // If the backend searches for propertySubType explicitly, it might need a dedicated field.
+            // For now, mapping to 'description' as per your backend controller:
+            url.searchParams.append('description', filters.propertySubType); 
         }
         if (filters.location) {
-            url.searchParams.append('city', filters.location); // Assuming backend expects 'city' or 'location'
+            url.searchParams.append('location', filters.location); // Backend uses 'location' for city, address etc.
         }
         if (filters.bedrooms) {
-            url.searchParams.append('bedroom', filters.bedrooms); // Backend expects 'bedroom' (singular)
+            url.searchParams.append('bedrooms', filters.bedrooms); // Backend expects 'bedrooms' (plural)
         }
         if (filters.maxPrice && filters.maxPrice !== '999999999') {
-            url.searchParams.append('price[lte]', filters.maxPrice); // Backend expects 'price[lte]' for max price
+            url.searchParams.append('maxPrice', filters.maxPrice); // Backend expects 'maxPrice' (no 'price[lte]')
         }
+        
+        // Your backend controller's `getAllProperties` uses `minPrice` and `maxPrice` query params.
+        // The frontend currently sends `maxPrice`. If you implement min price, add it here too.
+        // Example for minPrice (if you add a filter for it in HeroSectionWithSearch):
+        // if (filters.minPrice) {
+        //     url.searchParams.append('minPrice', filters.minPrice);
+        // }
 
         console.log("Frontend: Fetching URL with filters:", url.toString());
 
@@ -205,14 +207,22 @@ const FeaturedListings = ({ filters, setFilters }) => {
                 throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("Frontend: Fetched data response:", data);
+            console.log("Frontend: Fetched data response:", data); // <<< Inspect this log carefully!
 
             setProperties(prevProperties => {
-                const newProperties = (data.properties || []).map(p => ({
-                    ...p,
-                    // Ensure 'image' field from backend is used to construct the URL
-                    imageUrl: p.image ? `${UPLOADS_BASE_URL}${p.image}` : 'https://via.placeholder.com/250x250.png?text=No+Image'
-                }));
+                const newProperties = (data.properties || []).map(p => {
+                    // *** CRITICAL FIX: Ensure 'id' exists and is used, as per Sequelize model ***
+                    if (!p.id) {
+                        console.warn("Property object missing 'id' field from backend:", p);
+                        // Fallback, but investigate why backend isn't sending 'id' if this happens often
+                        p.id = Date.now() + Math.random(); 
+                    }
+                    return {
+                        ...p,
+                        // Ensure 'image' field from backend is used to construct the URL
+                        imageUrl: p.image ? `${UPLOADS_BASE_URL}${p.image}` : 'https://via.placeholder.com/250x250.png?text=No+Image'
+                    };
+                });
                 // If offset is 0, it means a new filter/search, so replace properties
                 // Otherwise, it's 'Load More', so append
                 return filters.offset === 0 ? newProperties : [...prevProperties, ...newProperties];
@@ -245,8 +255,13 @@ const FeaturedListings = ({ filters, setFilters }) => {
     };
 
     const handleCardClick = (id) => {
-        // *** CRITICAL FIX: Changed to plural 'properties' to match App.jsx route ***
-        navigate(`/properties/${id}`);
+        console.log("Frontend: Attempting to navigate to property ID:", id); // Verify the ID
+        if (id) {
+            navigate(`/properties/${id}`); // Ensure this matches your App.jsx route for single property
+        } else {
+            console.error("Frontend: Cannot navigate, property ID is undefined.");
+            alert("Error: Could not load property details. ID is missing.");
+        }
     };
 
     if (error) {
@@ -271,7 +286,8 @@ const FeaturedListings = ({ filters, setFilters }) => {
             ) : (
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {properties.map((property) => (
-                        <Col key={property.id}> {/* Ensure property.id is unique and exists */}
+                        // Use property.id as the key, which is guaranteed to exist now
+                        <Col key={property.id}> 
                             <Card
                                 className="h-100 overflow-hidden"
                                 style={{ border: "none", boxShadow: "none", cursor: "pointer" }}
@@ -321,7 +337,7 @@ const FeaturedListings = ({ filters, setFilters }) => {
                                         {property.address}
                                     </Card.Text>
                                     <Card.Text className="text-start fw-bold">
-                                        ${property.price ? property.price.toLocaleString() : 'Price not available'}
+                                        {/* ${property.price ? property.price.toLocaleString() : 'Price not available'} */}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -361,7 +377,7 @@ const FeaturedListings = ({ filters, setFilters }) => {
 const CombinedComponent = () => {
     const [filters, setFilters] = useState({
         propertyType: '', // '' means 'ALL_UNITS' for the backend 'type' filter
-        propertySubType: '', // Mapped to backend 'description' field
+        propertySubType: '', // Mapped to backend 'description' field (first word)
         location: '', // Mapped to backend 'city' or 'location'
         bedrooms: '', // Mapped to backend 'bedroom'
         maxPrice: '', // Mapped to backend 'price[lte]'

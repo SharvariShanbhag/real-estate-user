@@ -34,8 +34,7 @@ const PropertyGridSection = () => {
         <div className="section-header">
           <h2>Wide Selection Of Properties</h2>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br />
-            Lorem Ipsum has been the industry's standard.
+            Delve into our distinguished portfolio, a collection where every residence is a testament to architectural artistry and opulent living. Your distinguished abode awaits its discovery.
           </p>
         </div>
 
