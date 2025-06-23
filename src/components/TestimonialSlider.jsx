@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
 import '../Css/TestimonialsCarousel.css'; // Import the CSS file
-import t1 from '../assets/t1.jpg'
+import t1 from '../assets/t1.webp'
 import t2 from '../assets/t2.jpg'
-import t3 from '../assets/t3.png'
+import t3 from '../assets/t3.avif'
+import t4 from '../assets/t4.avif'
+
 // Sample testimonial data (replace with your actual data)
 const testimonialsData = [
   {
     id: 1,
-    name: 'David Elson',
+    name: 'Emily Rodriguez',
     date: '27th June 2025',
-    text: '“Very professional broker with great apartments selections”',
+    text: '“Absolutely thrilled with the service! Found my dream home faster than I ever thought possible. Highly recommend!”',
     image: t1, // Replace with actual image path
   },
   {
     id: 2,
-    name: 'Stephanie Nicol',
+    name: 'Michael Chen',
     date: '7th July 2024',
-    text: '“Very good, they offer the best prices of properties and customer service”',
+    text: '“Exceptional market knowledge and truly dedicated to finding the perfect fit. A seamless and stress-free process from start to finish.”',
     image: t2, // Replace with actual image path
   },
   {
     id: 3,
     name: 'Allen Jordan',
     date: '12th April 2025',
-    text: '“Good experience and good customer welcoming reflects level of the broker”',
+    text: '“The team went above and beyond! They were incredibly responsive and made sure all my questions were answered promptly.”',
     image: t3, // Replace with actual image path
   },
   {
     id: 4,
-    name: 'Jane Doe',
+    name: 'Olivia Martinez',
     date: '23th July 2024',
     text: '“Highly recommend! They found me the perfect place quickly.”',
-    image: t2, // Replace with actual image path
+    image: t4, // Replace with actual image path
   },
 ];
 

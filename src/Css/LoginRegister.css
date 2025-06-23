@@ -1,0 +1,132 @@
+/* src/Css/LoginRegister.css */
+
+.login-register-container {
+    /* Existing styles */
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px; /* Provides some space around the container */
+
+    /* New/Modified styles for left alignment */
+    display: flex; /* Ensure flexbox is active */
+    align-items: center; /* Keep vertically centered */
+    justify-content: flex-start; /* Align content to the start (left) */
+    padding-left: 10%; /* Add padding to push the card from the left edge */
+    /* You can adjust 10% to whatever suits the visual balance of your image */
+}
+
+.login-register-card {
+    /* Existing styles for transparency, rounded corners, shadow */
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white for the card background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    width: 100%;
+    margin-left: 100px;
+    max-width: 400px; /* Same max-width as your original inline style */
+    padding: 20px;
+    border: none; /* Remove default card border */
+    backdrop-filter: blur(5px); /* Optional: Adds a blur effect behind the card for a frosted glass look */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+
+    /* New style for positioning if needed, though padding-left on container might be enough */
+    margin-right: auto; /* Pushes the card to the left if container allows */
+}
+
+.login-register-card-body {
+    padding: 0; /* Remove default body padding if not needed, as card padding is set */
+}
+
+.login-register-title {
+    color: #333; /* Darker text for titles */
+    font-weight: 600;
+    font-size:25px;
+    margin-bottom: 5px; /* Adjust spacing */
+    text-align: left; /* Align title to the left */
+    padding-left: 15px; /* Add some left padding to the title */
+}
+
+.login-register-title .subtitle {
+    font-size: 15px;
+    margin-left: 90px;
+    color: #666;
+    margin-top: 5px;
+    font-weight: normal;
+    text-align: left; /* Align subtitle to the left */
+}
+
+.form-label-custom {
+    color: #555; /* Darker label text */
+    font-weight: 500;
+    margin-bottom: 5px;
+    padding-left: 15px; /* Align label with title */
+}
+
+.form-control-custom {
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent input fields */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 8px; /* Slightly rounded input fields */
+    padding: 10px 15px;
+    color: #333; /* Input text color */
+}
+
+.form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.9); /* Less transparent on focus */
+    border-color: #888; /* Darker border on focus */
+    box-shadow: none; /* Remove default bootstrap shadow on focus */
+}
+
+.login-register-button {
+    background-color: #343a40; /* Dark button color */
+    border-color: #343a40;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.login-register-button:hover {
+    background-color: #23272b;
+    border-color: #23272b;
+}
+
+.forgot-password-link {
+    color: #333; /* Standard link color for "Forgot password?" */
+    font-size: 0.9em;
+    text-decoration: none; /* Remove underline */
+    margin-right: 15px; /* Push it slightly from the right edge */
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #0056b3;
+}
+
+.account-text {
+    color: #555; /* Muted color for "Are you new?" text */
+    font-size: 0.95em;
+}
+
+.create-account-link {
+    color: #007bff; /* Standard link color */
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+.create-account-link:hover {
+    text-decoration: underline;
+}
+
+/* Adjust Alert style if needed for transparency, though Bootstrap's default is usually okay */
+.alert {
+    background-color: rgba(220, 53, 69, 0.8); /* Slightly transparent danger alert */
+    color: #fff; /* White text for better contrast */
+    border-color: rgba(220, 53, 69, 0.9);
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.8); /* Slightly transparent success alert */
+    color: #fff;
+    border-color: rgba(40, 167, 69, 0.9);
+}

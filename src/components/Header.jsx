@@ -1,7 +1,9 @@
 // src/components/Header/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import {  FaMapMarkerAlt } from 'react-icons/fa';
+import { IoMdCall } from "react-icons/io";
+
 import '../Css/Header.css';
 import logoImage from '../assets/logo.jpg'; // Adjust this path to your actual logo image
 
@@ -27,7 +29,7 @@ const Header = () => {
           <li><Link to="/contact" style={{ color: 'black', fontWeight: 400 }}>Contact Us</Link></li>
           <li className="request-call-item">
             <a href="tel:+1234567890" className="request-call-button" style={{ backgroundColor: '#2495FD', color: 'white' }}>
-              <FaPhone className="call-icon" style={{ color: 'white' }} />
+              <IoMdCall className="call-icon" style={{ color: 'white',}} />
               <span style={{ color: 'white' }}>Request a Call</span>
             </a>
           </li>

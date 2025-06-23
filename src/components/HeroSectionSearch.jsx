@@ -358,9 +358,10 @@ const FeaturedListings = ({ filters, setFilters }) => {
                             borderWidth: '2px',
                             borderStyle: 'solid',
                             fontWeight: 'bold',
+                            
                         }}
                     >
-                        Load More ({Math.max(0, totalProperties - properties.length)} remaining)
+                        Load More
                     </Button>
                 </div>
             )}

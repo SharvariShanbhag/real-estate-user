@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import LoginRegister from './pages/LoginRegister'; // Your Login/Register page
+import ScrollToTop from './components/Scro;;ToTop'; // Import the new component
 
 
 
@@ -13,6 +14,8 @@ import PropertyDetail from './pages/PropertyDetail';
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* <--- RENDER THE SCROLLTOTOP COMPONENT HERE */}
+
       <AuthProvider>
       <div className="App">
         <Routes>
